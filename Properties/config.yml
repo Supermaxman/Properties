@@ -1,4 +1,7 @@
 # Notes:
+# Type this command into console to begin generating the plots world:
+# mv create plots normal -g Properties
+# make sure to have a wipe.schematic in the folder also so there is something for the plugin to reset plots to.
 # make sure you type out the correct filename for your schematic
 # earningstime is how many seconds in between player earnings
 # If you have any questions or additions feel free to ask
