@@ -1,0 +1,15 @@
+name: Properties
+main: me.supermaxman.properties.Properties
+version: 1.0.0
+author: Supermaxman
+description: Properties!
+commands:
+    properties:
+        description: properties command
+        usage: /<command>
+    prop:
+        description: properties command
+        usage: /<command>
+worlds:
+  plots:
+    generator: Properties

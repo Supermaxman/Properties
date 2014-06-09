@@ -1,0 +1,47 @@
+# Notes:
+# make sure you type out the correct filename for your schematic
+# earningstime is how many seconds in between player earnings
+# If you have any questions or additions feel free to ask
+# to create a new housetype just make a new one under settings: housetypes:
+# The name will be the way players will type it, so for example:
+# settings:
+#   housetypes: 
+#     Name:                                This will be the name
+#       price: 100                         This will be the price to purchase
+#       earnings: 5                        This will be the earnings a player has for owning the house for a set period of time, see earingstime
+#       schematic: 'BasicHouse.schematic'  This is the exact name of the schematic which this house will use. make sure to save the schematics from the corder where x and z are the lowest values.
+#
+settings:
+  housetypes: 
+    BasicHouse:
+      price: 1000
+      earnings: 5
+      schematic: 'BasicHouse.schematic'
+  housesettings:
+    maxhouses: 18
+    earningstime: 1800
+  plots:
+    PathSize: 7
+    PlotSize: 32
+    PlotBuild: true
+    Path_Material: 'STONE'
+    Plot_Material: 'GRASS'
+    Under_Plot_Material: 'BEDROCK'
+  messages:
+    PurchaseMessage: '&bPurchased house.'
+    NoBalanceMessage: '&4Not enough money in balance.'
+    NoPropertiesMessage: '&4No properties found.'
+    NoPermissionsMessage: '&4You do not have permission.'
+    CommandFormatIncorrectMessage: '&4Command used incorrectly, type /properties help for command information'
+    InviteMessage: '&bYou have invited a player to your home.'
+    BeforeTeleportMessage: '&bYou must wait 7 seconds before teleporting, do not move.'
+    TeleportMessage: '&bYou have teleported to your home.'
+    TeleportInterupt: '&4Your teleport has been interupted.'
+    SaleMessage: '&bYou have sold a property.'
+    WrongIdMessage: '&4Id not found.'
+    WrongTypeMessage: '&4House type not found.'
+    MaxHouseLimitMessage: '&4House limit reached, you can buy no more houses.'
+    DonationMessage: '&bDonation'
+    ReloadMessage: '&bReloaded'
+    RevokeMessage: '&4Revoked'
+    HelpMessage: '&bType /properties for GUI, or use these commands: /properties buy <propertytype>, sell <propertyid>, list, invite <username> <propertyid>, tp <propertyid>, grant <username> <housetype> [tp], revoke <username>, reload, help'
