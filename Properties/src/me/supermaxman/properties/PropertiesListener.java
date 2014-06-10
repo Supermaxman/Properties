@@ -8,6 +8,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -18,6 +19,13 @@ public class PropertiesListener implements Listener {
 	@EventHandler
 	public void onEntitySpawn(CreatureSpawnEvent e) {
 		if(e.getEntity().getWorld().getName().equals("plots")) {
+			e.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onCraftItem(CraftItemEvent e) {
+		if(e.getWhoClicked().getWorld().getName().equals("plots")) {
 			e.setCancelled(true);
 		}
 	}
