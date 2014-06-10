@@ -3,6 +3,7 @@ main: me.supermaxman.properties.Properties
 version: 1.0.0
 author: Supermaxman
 description: Properties!
+load: STARTUP
 commands:
     properties:
         description: properties command
