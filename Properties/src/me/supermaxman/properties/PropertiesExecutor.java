@@ -72,18 +72,18 @@ public class PropertiesExecutor extends BaseExecutor {
         		}
         	}else if(args[0].equalsIgnoreCase("invite")) {
         		if(!(sender instanceof Player))return;
-        		if(args.length>3) {
+        		if(args.length>2) {
 	        		Player p = (Player) sender;
 	        		if(Properties.houses.containsKey(p.getName())) {
 	        			House h = null;
 	        			for(House x : Properties.houses.get(p.getName())) {
-	        				if(String.valueOf(x.getId()).equals(args[3])) {
+	        				if(String.valueOf(x.getId()).equals(args[2])) {
 	        					h = x;
 	        					break;
 	        				}
 	        			}
 	        			if(h!=null) {
-	        				h.addAllowedIn(args[2]);
+	        				h.addAllowedIn(args[1]);
 	    					p.sendMessage(getColoredText(Properties.conf.getString("settings.messages.InviteMessage")));
 	        			}else {
         					p.sendMessage(getColoredText(Properties.conf.getString("settings.messages.WrongIdMessage")));
@@ -222,12 +222,16 @@ public class PropertiesExecutor extends BaseExecutor {
 	}
     
 	static void setupPurchaseMenu(Player p) {
-		IconMenu menu = new IconMenu(ChatColor.GOLD+"Purchase", toMultiple(Properties.typelist.size()), new IconMenu.OptionClickEventHandler() {
+		IconMenu menu = new IconMenu(ChatColor.GOLD+"Purchase", toMultiple(Properties.typelist.size()+1), new IconMenu.OptionClickEventHandler() {
 	        @Override
 	        public void onOptionClick(IconMenu.OptionClickEvent event) {
 	        	if(event.willClose())return;
 	        	String n = ChatColor.stripColor(event.getName());
 	        	Player p = event.getPlayer();
+	        	if(event.getName().equals(ChatColor.DARK_BLUE+"Back")) {
+	        		setupMenu(p);
+	        		return;
+	        	}
 				if(Properties.economy.has(p.getName(), Properties.typelist.get(n).getPrice())) {
 					int i = 0;
 					if(Properties.houses.containsKey(p.getName()))i=Properties.houses.get(p.getName()).size();
@@ -239,11 +243,14 @@ public class PropertiesExecutor extends BaseExecutor {
 	    	            return;
 					}else {
 						p.sendMessage(getColoredText(Properties.conf.getString("settings.messages.MaxHouseLimitMessage")));
+			            event.setWillClose(true);
+			            return;
 					}
 				}else {
 					p.sendMessage(getColoredText(Properties.conf.getString("settings.messages.NoBalanceMessage")));
+		            event.setWillClose(true);
+		            return;
 				}
-	            event.setWillClose(false);
 	        }
 	    }, Properties.plugin);
 		int i = 0;
@@ -251,17 +258,22 @@ public class PropertiesExecutor extends BaseExecutor {
 			menu.setOption(i, new ItemStack(Material.BRICK), ChatColor.DARK_PURPLE+""+h.getType(), ChatColor.GOLD+""+h.getPrice());
 			i++;
 		}
+		menu.setOption(toMultiple(Properties.typelist.size()+1)-1, new ItemStack(Material.FEATHER), ChatColor.DARK_BLUE+"Back");
 		menu.open(p);
 	}
     
 	static void setupSellMenu(Player p) {
 		String s = p.getName();
-		IconMenu menu = new IconMenu(ChatColor.GOLD+"Sell", toMultiple(Properties.conf.getInt("settings.housesettings.maxhouses")), new IconMenu.OptionClickEventHandler() {
+		IconMenu menu = new IconMenu(ChatColor.GOLD+"Sell", toMultiple(Properties.conf.getInt("settings.housesettings.maxhouses")+1), new IconMenu.OptionClickEventHandler() {
 	        @Override
 	        public void onOptionClick(IconMenu.OptionClickEvent event) {
 	        	if(event.willClose())return;
 	        	String n = ChatColor.stripColor(event.getName());
 	        	Player p = event.getPlayer();
+	        	if(event.getName().equals(ChatColor.DARK_BLUE+"Back")) {
+	        		setupMenu(p);
+	        		return;
+	        	}
 	        	if(Properties.houses.containsKey(p.getName())) {
 	        		House h = null;
 	        		for(House x : Properties.houses.get(p.getName())) {
@@ -288,17 +300,22 @@ public class PropertiesExecutor extends BaseExecutor {
 				i++;
 			}
 		}
+		menu.setOption(toMultiple(Properties.conf.getInt("settings.housesettings.maxhouses")+1)-1, new ItemStack(Material.FEATHER), ChatColor.DARK_BLUE+"Back");
 		menu.open(p);
 	}
 	
 	static void setupTeleportMenu(Player p) {
 		String s = p.getName();
-		IconMenu menu = new IconMenu(ChatColor.DARK_PURPLE+"Teleport", toMultiple(Properties.conf.getInt("settings.housesettings.maxhouses")), new IconMenu.OptionClickEventHandler() {
+		IconMenu menu = new IconMenu(ChatColor.DARK_PURPLE+"Teleport", toMultiple(Properties.conf.getInt("settings.housesettings.maxhouses")+1), new IconMenu.OptionClickEventHandler() {
 	        @Override
 	        public void onOptionClick(IconMenu.OptionClickEvent event) {
 	        	if(event.willClose())return;
 	        	String n = ChatColor.stripColor(event.getName());
 	        	Player p = event.getPlayer();
+	        	if(event.getName().equals(ChatColor.DARK_BLUE+"Back")) {
+	        		setupMenu(p);
+	        		return;
+	        	}
         		if(Properties.houses.containsKey(p.getName())) {
         			House h = null;
         			for(House x : Properties.houses.get(p.getName())) {
@@ -324,14 +341,19 @@ public class PropertiesExecutor extends BaseExecutor {
 				i++;
 			}
 		}
+		menu.setOption(toMultiple(Properties.conf.getInt("settings.housesettings.maxhouses")+1)-1, new ItemStack(Material.FEATHER), ChatColor.DARK_BLUE+"Back");
 		menu.open(p);
 	}
 	
 	static void setupPropertiesMenu(Player p) {
 		String s = p.getName();
-		IconMenu menu = new IconMenu(ChatColor.AQUA+"Properties", toMultiple(Properties.conf.getInt("settings.housesettings.maxhouses")), new IconMenu.OptionClickEventHandler() {
+		IconMenu menu = new IconMenu(ChatColor.AQUA+"Properties", toMultiple(Properties.conf.getInt("settings.housesettings.maxhouses")+1), new IconMenu.OptionClickEventHandler() {
 	        @Override
 	        public void onOptionClick(IconMenu.OptionClickEvent event) {
+	        	if(event.getName().equals(ChatColor.DARK_BLUE+"Back")) {
+	        		setupMenu(event.getPlayer());
+	        		return;
+	        	}
 	            event.setWillClose(false);
 	        }
 	    }, Properties.plugin);
@@ -342,6 +364,7 @@ public class PropertiesExecutor extends BaseExecutor {
 				i++;
 			}
 		}
+		menu.setOption(toMultiple(Properties.conf.getInt("settings.housesettings.maxhouses")+1)-1, new ItemStack(Material.FEATHER), ChatColor.DARK_BLUE+"Back");
 		menu.open(p);
 	}
 }

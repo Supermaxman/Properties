@@ -27,7 +27,7 @@ settings:
     PathSize: 7
     PlotSize: 32
     PlotBuild: true
-    Path_Material: 'STONE'
+    Path_Material: 'COAL_BLOCK'
     Plot_Material: 'GRASS'
     Under_Plot_Material: 'BEDROCK'
   messages:
@@ -39,7 +39,7 @@ settings:
     InviteMessage: '&bYou have invited a player to your home.'
     BeforeTeleportMessage: '&bYou must wait 7 seconds before teleporting, do not move.'
     TeleportMessage: '&bYou have teleported to your home.'
-    TeleportInterupt: '&4Your teleport has been interupted.'
+    TeleportInterupt: '&4Your teleport has been interrupted.'
     SaleMessage: '&bYou have sold a property.'
     WrongIdMessage: '&4Id not found.'
     WrongTypeMessage: '&4House type not found.'
