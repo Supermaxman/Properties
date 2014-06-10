@@ -39,7 +39,7 @@ public class PropertiesListener implements Listener {
 					for(House h : Properties.houses.get(s)) {
 						if(h.isInside(e.getBlock().getLocation())) {
 							if(e.getPlayer().getName().equals(h.getOwner())) {
-								if(Properties.conf.getBoolean("settings.plots.PlotBuild")) { //buildon
+								if(Properties.conf.getString("settings.plots.PlotBuild").equalsIgnoreCase("on")) {
 									cancel = false;
 									break;
 								}else {
@@ -89,7 +89,7 @@ public class PropertiesListener implements Listener {
 					for(House h : Properties.houses.get(s)) {
 						if(h.isInside(e.getBlock().getLocation())) {
 							if(e.getPlayer().getName().equals(h.getOwner())) {
-								if(Properties.conf.getBoolean("settings.plots.PlotBuild")) { //buildon
+								if(Properties.conf.getString("settings.plots.PlotBuild").equalsIgnoreCase("on")) {
 									cancel = false;
 									break;
 								}else {
